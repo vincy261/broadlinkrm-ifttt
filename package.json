@@ -18,7 +18,7 @@
         "body-parser": "latest",
         "request": "latest",
         "helmet": "latest",
-        "broadlinkjs-rm": "latest",
+        "broadlinkjs": "latest",
         "uuid": "latest"
     }
 }

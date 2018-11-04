@@ -1,5 +1,5 @@
 // from: https://raw.githubusercontent.com/lprhodes/homebridge-broadlink-rm/master/helpers/getDevice.js
-const BroadlinkJS = require('broadlinkjs-rm');
+const BroadlinkJS = require('broadlinkjs');
 const broadlink = new BroadlinkJS()
 
 const discoveredDevices = {};

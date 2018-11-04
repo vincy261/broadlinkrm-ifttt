@@ -41,7 +41,7 @@ module.exports = (commands, learnEnabled = false) => {
             (device.cancelRFSweep && device.cancelRFSweep());
 
             let cancelLearning = () => {
-                (device.cancelRFSweep && device.cancelRFSweep());
+            (device.cancelRFSweep && device.cancelRFSweep());
                 device.removeListener('rawData', onRawData);
 
                 clearTimeout(getTimeout);
@@ -93,7 +93,7 @@ module.exports = (commands, learnEnabled = false) => {
 
         if (command && req.body.secret && req.body.secret == command.secret) {
             let host = command.mac || command.ip;
-            let device = Broadlink({ host });
+            let device = Broadlink({ host, learnOnly: true });
 
             if (!device) {
                 console.log(`${req.params.name} sendData(no device found at ${host})`);
@@ -119,7 +119,37 @@ module.exports = (commands, learnEnabled = false) => {
                 } else {
                     sendData(device, command.data);
                 }
+                return res.sendStatus(200);
+            }
 
+            res.sendStatus(501);
+        } else {
+            console.log(`Command not found: ${req.params.name}`);
+            res.sendStatus(404);
+        }
+    });
+
+    app.post('/smartplug/:name', (req, res) => {
+        const command = commands.find((e) => { return e.command == req.params.name; });
+
+        if (command && req.body.secret && req.body.secret == command.secret) {
+            let host = command.mac || command.ip;
+            let device = Broadlink({ host,learnOnly: false });
+            if (!device) {
+                console.log(`${req.params.name} sendData(no device found at ${host})`);
+            } else if (device.type !== 'SP1' && device.type !== 'SP2') {
+                console.log(`[ERROR] The device at ${device.host.address} (${device.host.macAddress}) is not of type SP1 or SP2.`);
+            } else if (command.data && (command.data !== 'on' && command.data !== 'off' )) {
+                console.log(`[ERROR] Unvalid command data, command data should be 'on' or 'off'`);
+            } else {
+                //
+                if(command.data && command.data === 'on') {
+                    device.set_power(1);
+                    console.log('Sending on command on');
+                } else {
+                    device.set_power(0);
+                    console.log('Sending off command off');
+                }
                 return res.sendStatus(200);
             }
 
