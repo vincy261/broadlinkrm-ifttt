@@ -1,15 +1,16 @@
 {
     "name": "broadlink-rm-and-sp-server",
-    "version": "0.0.6",
+    "version": "0.0.1",
     "main": "index.js",
-    "author": "jor3l",
+    "author": "kenzosan",
+    "description": "node server to control broadlink ir devices and smartplug devices",
     "license": "ISC",
     "scripts": {
         "start": "node server-https"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/jor3l/broadlinkrm-ifttt"
+        "url": "https://github.com/vincy261/broadlinkrm-ifttt"
     },
     "dependencies": {
         "express": "latest",

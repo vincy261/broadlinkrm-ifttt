@@ -5,12 +5,12 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-const uuid = require('uuid/v4');
-const request = require('request');
 const macRegExp = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
 
 /* Setup */
 const Broadlink = require('./device');
+const ON = 1;
+const OFF = 0;
 
 function sendData(device = false, hexData = false) {
     if(device === false || hexData === false) {
@@ -42,7 +42,7 @@ module.exports = (commands, learnEnabled = false) => {
 
             let cancelLearning = () => {
             (device.cancelRFSweep && device.cancelRFSweep());
-                device.removeListener('rawData', onRawData);
+                device.emitter.removeListener('rawData', onRawData);
 
                 clearTimeout(getTimeout);
                 clearTimeout(getDataTimeout);
@@ -144,11 +144,11 @@ module.exports = (commands, learnEnabled = false) => {
             } else {
                 //
                 if(command.data && command.data === 'on') {
-                    device.set_power(1);
-                    console.log('Sending on command on');
+                    device.set_power(ON);
+                    console.log(`Sending 'on' command`);
                 } else {
-                    device.set_power(0);
-                    console.log('Sending off command off');
+                    device.set_power(OFF);
+                    console.log(`Sending 'off' command`);
                 }
                 return res.sendStatus(200);
             }

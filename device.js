@@ -22,7 +22,7 @@ const discoverDevices = (count = 0) => {
 
   setTimeout(() => {
     discoverDevices(count);
-  }, 5 * 1000)
+  }, limit * 1000)
 }
 
 discoverDevices();
