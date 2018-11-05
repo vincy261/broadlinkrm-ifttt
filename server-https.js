@@ -2,8 +2,8 @@
 const path = require('path');
 const https = require('https');
 const BroadlinkServer = require('./index');
-const commands = require('./commands');
-const smartPlugCommands = require('./smartplug');
+const commands = require('./commands/commands');
+const smartPlugCommands = require('./commands/smartplug');
 const fs = require('fs');
 
 // set server port
