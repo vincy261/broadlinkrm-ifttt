@@ -1,7 +1,7 @@
-"use stict";
+"use strict";
 const PORT = process.env.PORT || 1880;
 
-const BroadlinkServer = require('./index'); // use require('broadlink-rm-server')
+const BroadlinkServer = require('./index');
 const commands = require('./commands/commands');
 const smartPlugCommands = require('./commands/smartplug');
 
