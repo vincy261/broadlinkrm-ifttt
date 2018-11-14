@@ -6,7 +6,8 @@
     "description": "node server to control broadlink ir devices and smartplug devices",
     "license": "ISC",
     "scripts": {
-        "start": "node server-https"
+        "start": "node server",
+        "https": "node server-https"
     },
     "repository": {
         "type": "git",

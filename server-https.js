@@ -7,7 +7,7 @@ const smartPlugCommands = require('./commands/smartplug');
 const fs = require('fs');
 
 // set server port
-const PORT = process.env.PORT || 1881;
+const PORT = process.env.PORT || 1880;
 
 // retrieve key and cert from file system
 const privateKey  = fs.readFileSync(path.join(__dirname, '/sslcert') + '/kenzo.key', 'utf8');
