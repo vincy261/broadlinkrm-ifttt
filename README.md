@@ -1,7 +1,5 @@
 # Broadlink RM Server for IFTTT control
 
-
-
 This is a simple server that allows you to connect your Broadlink (tested with the RM mini 3) to your IFTTT account.
 
 # Setup
